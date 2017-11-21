@@ -9,7 +9,7 @@ In this work, we for the ﬁrst time develop a series of experiments using 10 la
 
 Experiments for Basic Trawling Attacks
 --------------------------------------
-As shown in `experimentsfor_basic_trawling_attacks.pdf`, we further evaluate Juels-Rivest’s four honeyword methods by using three datasets: Tianya, Rockyou and 000webhost.
+As shown in `experiments_for_basic_trawling_attacks`, we further evaluate Juels-Rivest’s four honeyword methods by using three datasets: Tianya, Rockyou and 000webhost.
 
 An example of attacking code
 --------------------------------------
