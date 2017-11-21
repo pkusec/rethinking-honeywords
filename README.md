@@ -13,6 +13,28 @@ As shown in `experiments_for_basic_trawling_attacks.pdf`, we further evaluate Ju
 
 An example of attacking code
 --------------------------------------
+Here, we take the `model syntax` method and the dataset `data/test.txt` and `data/train.txt` as example.
+
+* makefile
+
+* generate the honeywords file and checker file
+~~~~~~{.sh}
+$ ./gen ./data/test.txt
+~~~~~~
+then you can see two files `test_honeywords.txt` and `test_checker.txt` in the folder `data/`.
+
+* calculate the probability of honeywords
+`calc` takes two parameters, the honeywords file and the training set. It generates the probability file `test_pr.txt` in the folder `data/`.
+~~~~~~{.sh}
+$ ./calc ./data/test_honeywords.txt ./data/train.txt
+~~~~~~
+
+* attack
+`atk` takes three parameters, the probability file, the threshold of guess number for the single account and the threshold of guess number for the whole websites.
+~~~~~~{.sh}
+$ ./atk test_pr.txt 3 10000
+~~~~~~
+then you can find the file `test_crack_num.txt` in the folder `data/`, each line in the crack_num file means the the number of cracked account every time guessing wrong.
 
 
 A Security Analysis of Honeywords
