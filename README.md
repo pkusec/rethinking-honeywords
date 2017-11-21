@@ -23,7 +23,7 @@ A Security Analysis of Honeywords
 ---------------------------------
 To achieve perfect honeyword-generation, Imran  proposed the honeyindex system. To generate honeywords for a given user, honeyindex directly uses the other users' passwords as this user's honeywords. So the distribution of honeywords is equal to the distribution of passwords.
 
-###Distinguishing attack
+### Distinguishing attack
 
 There is a serious flaw in the Honeyindex system. If some sweetindex $si$ is contained  in only one user $U_i$'s sweetindex list, the password paired with $si$ will be $U_i$'s real password. This enables us to devise a method  to distinguish the real password:
 
@@ -40,7 +40,7 @@ Imran realized that "passwords of newly created accounts would not be used as ho
 There is a another more serious problem in the honeyindex system. The passwords are stored in salted hash in the (sweetindex, password)--table. So it's hardly  impossible  to keep one user's sweetwords different from each other. If a user has a honeyword that is the same with his password, the position of the honeyword in the sweetword list will be sent to the honeychecker. This will cause a false alarm. To overcome  this problem, honeywords should be generated different from the real password. This can be done when the user registers, but it's  hardly  impossible when the sweetindex are regenerated periodically: the website does not know the plaintext of user's password, because all passwords have been hashed and salted.
 
 
-###Heavy computational cost
+### Heavy computational cost
 
 The storage cost of the honeyindex system is less than the honeyword system, because honeyindex only stores one hash per user, while the honeyword system needs to store $k$ hashes per user. But the benefit of the honeyindex system is come at the cost of heavy computation.
 
