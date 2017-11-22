@@ -9,19 +9,21 @@ In this work, we for the ﬁrst time develop a series of experiments using 10 la
 
 Experiments for Basic Trawling Attacks
 --------------------------------------
-As shown in `experiments_for_basic_trawling_attacks.pdf`, we further evaluate Juels-Rivest’s four honeyword methods by using three datasets: Tianya, Rockyou and 000webhost.
+As shown in `experimentsfor_basic_trawling_attacks.pdf`, we further evaluate Juels-Rivest’s four honeyword methods by using three datasets: Tianya, Rockyou and 000webhost.
 
 An example of attacking code
 --------------------------------------
 Here, we take the `model syntax` method and the dataset `data/test.txt` and `data/train.txt` as example.
 
 * makefile
+~~~~~~{.sh}
+$ make
+~~~~~~
 
-* generate the honeywords file and checker file
+* generate the honeywords file and checker file. Then you can see two files `test_honeywords.txt` and `test_checker.txt` in the folder `data/`.
 ~~~~~~{.sh}
 $ ./gen ./data/test.txt
 ~~~~~~
-then you can see two files `test_honeywords.txt` and `test_checker.txt` in the folder `data/`.
 
 * calculate the probability of honeywords
 `calc` takes two parameters, the honeywords file and the training set. It generates the probability file `test_pr.txt` in the folder `data/`.
@@ -30,12 +32,10 @@ $ ./calc ./data/test_honeywords.txt ./data/train.txt
 ~~~~~~
 
 * attack
-`atk` takes three parameters, the probability file, the threshold of guess number for the single account and the threshold of guess number for the whole websites.
+`atk` takes five parameters, the probability file, the honeywords file, the checker file, the threshold of guess number for the single account and the threshold of guess number for the whole websites. Then you can find the file `test_crack_num.txt` in the folder `data/`, each line in the file means the the number of cracked account every time guessing wrong, and `test_result.txt`, each line shows the hit count, the line index, the position in that line and the probability of the honeyword.
 ~~~~~~{.sh}
-$ ./atk test_pr.txt 3 10000
+$ ./atk ./data/test_pr.txt ./data/test_honeywords.txt ./data/test_checker.txt 3 100
 ~~~~~~
-then you can find the file `test_crack_num.txt` in the folder `data/`, each line in the crack_num file means the the number of cracked account every time guessing wrong.
-
 
 A Security Analysis of Honeywords
 ---------------------------------

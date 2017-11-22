@@ -1,23 +1,16 @@
 CC = g++
 CFLAGS = -Wall -O2
+SRCS := $(wildcard *.cpp)
+TARGET := $(patsubst %.cpp, %, $(SRCS))
 
+all: $(TARGET) clean
 gen: gen.o
-	$(CC) $(CFLAGS) -o gen gen.o
-
+	$(CC) $(CFLAGS) -o $@ $<
 calc: calc.o
-	$(CC) $(CFLAGS) -o calc calc.o
-
+	$(CC) $(CFLAGS) -o $@ $<
 atk: atk.o
-	$(CC) $(CFLAGS) -o atk atk.o
-
-gen.o: gen.cpp
-	$(CC) $(CFLAGS) -c gen.cpp
-
-calc.o: calc.cpp
-	$(CC) $(CFLAGS) -c calc.cpp
-
-atk.o: atk.cpp
-	$(CC) $(CFLAGS) -c atk.cpp
-
+	$(CC) $(CFLAGS) -o $@ $<
+%.o: %.c
+	$(CC) $(CFLAGS) -c $@ $<
 clean:
-	rm gen calc atk gen.o calc.o atk.o
+	rm -rf *.o
