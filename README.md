@@ -7,11 +7,11 @@ Honeywords are decoy passwords associated with each user account, and they contr
 
 In this work, we for the ﬁrst time develop a series of experiments using 10 large-scale password datasets, a total of 104 million real-world passwords, to evaluate the security that these four methods can provide. Our results reveal that they all fail to provide the expected security: real passwords can be distinguished with a success rate of 29.29%∼32.62% by our basic trawling-guessing attacker, but not the claimed 5%, with just one guess (when each user account is associated with 19 honeywords as recommended). This ﬁgure reaches 34.21%∼49.02% under the advanced trawling-guessing attackers who make use of various state-of-the-art probabilistic password models. We further evaluate the security of Juels-Rivest’s methods under a targeted-guessing attacker who can exploit the victim’ personal information, and the results are even more alarming: 56.81%∼67.98%. Overall, our work resolves three open problems in honeyword research, as deﬁned by Juels and Rivest.
 
-Experiments for Basic Trawling Attacks
+Section 1: Experiments for Basic Trawling Attacks
 --------------------------------------
-As shown in `experimentsfor_basic_trawling_attacks.pdf`, we further evaluate Juels-Rivest’s four honeyword methods by using three datasets: Tianya, Rockyou and 000webhost.
+As shown in `experiments_for_basic_trawling_attacks.pdf`, we further evaluate Juels-Rivest’s four honeyword methods by using three datasets: Tianya, Rockyou and 000webhost.
 
-An example of attacking code
+Section 2: An example of attacking code
 --------------------------------------
 Here, we take the `model syntax` method and the dataset `data/test.txt` and `data/train.txt` as example.
 
@@ -37,7 +37,7 @@ $ ./calc ./data/test_honeywords.txt ./data/train.txt
 $ ./atk ./data/test_pr.txt ./data/test_honeywords.txt ./data/test_checker.txt 3 100
 ~~~~~~
 
-A Security Analysis of Honeywords
+Section 3: A Security Analysis of Honeyindex
 ---------------------------------
 To achieve perfect honeyword-generation, Imran  proposed the honeyindex system. To generate honeywords for a given user, honeyindex directly uses the other users' passwords as this user's honeywords. So the distribution of honeywords is equal to the distribution of passwords.
 
@@ -62,4 +62,4 @@ There is a another more serious problem in the honeyindex system. The passwords 
 
 The storage cost of the honeyindex system is less than the honeyword system, because honeyindex only stores one hash per user, while the honeyword system needs to store $k$ hashes per user. But the benefit of the honeyindex system is come at the cost of heavy computation.
 
-The honeyword system uses the same salt for all the sweetwords of one user. When a user logins with password $pw$, the website only needs to compute the hash of $pw$ and compare the hash value with the hashes of $k$ sweetwords. But a user's sweetwords in the honeyindex system is hashed with different salt (because different accounts will, generally, have a different salt), so the website needs to compute $k$ times of slated-hash  at worst and $\frac{k}{2}$ hashes on average. Generally, it is recommended practice for the website to  use a slow hash function (e.g., bcrypt and PBKDF2) to securely store user passwords. As a result, the authentication time will be wasted at computing $k$ slow hashes. In all, the computational cost in a login of the honeyindex system is, on average,   $\frac{k}{2}$ times larger than that of the honeyword system.
+The honeyword system uses the same salt for all the sweetwords of one user. When a user logins with password $pw$, the website only needs to compute the hash of $pw$ and compare the hash value with the hashes of $k$ sweetwords. But a user's sweetwords in the honeyindex system is hashed with different salt (because different accounts will, generally, have a different salt), so the website needs to compute $k$ times of slated-hash  at worst and $\frac{k}{2}$ hashes on average. Generally, it is recommended practice for the website to  use a slow hash function (e.g., bcrypt and PBKDF2) to securely store user passwords. As a result, the authentication time will be wasted at computing $k$ slow hashes. In all, the computational cost in a login of the honeyindex system is, on average, $\frac{k}{2}$ times larger than that of the honeyword system.
